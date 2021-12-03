@@ -126,9 +126,9 @@ clean-sysroot:
 esptool: toolchain
 	cp esptool/esptool.py $(TOOLCHAIN)/bin/
 
-toolchain: $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc
+toolchain $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/lib/libc.a: crosstool-NG/.built
 
-$(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc: crosstool-NG/ct-ng
+rosstool-NG/.built: crosstool-NG/ct-ng
 	cp -f 1000-mforce-l32.patch crosstool-NG/local-patches/gcc/4.8.5/
 	$(MAKE) -C crosstool-NG -f ../Makefile _toolchain
 
