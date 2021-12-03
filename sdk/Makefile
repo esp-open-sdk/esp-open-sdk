@@ -107,6 +107,7 @@ endif
 
 clean: clean-sdk
 	$(MAKE) -C crosstool-NG clean MAKELEVEL=0
+	-rm -f crosstool-NG/.built
 	-rm -rf crosstool-NG/.build/src
 	-rm -f crosstool-NG/local-patches/gcc/4.8.5/1000-*
 	-rm -rf $(TOOLCHAIN)
@@ -131,6 +132,7 @@ toolchain $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc $(TOOLCHAIN)/xtensa-lx106-elf/sy
 crosstool-NG/.built: crosstool-NG/ct-ng
 	cp -f 1000-mforce-l32.patch crosstool-NG/local-patches/gcc/4.8.5/
 	$(MAKE) -C crosstool-NG -f ../Makefile _toolchain
+	touch $@
 
 _toolchain:
 	./ct-ng xtensa-lx106-elf
