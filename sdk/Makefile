@@ -128,7 +128,7 @@ esptool: toolchain
 
 toolchain $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/lib/libc.a: crosstool-NG/.built
 
-rosstool-NG/.built: crosstool-NG/ct-ng
+crosstool-NG/.built: crosstool-NG/ct-ng
 	cp -f 1000-mforce-l32.patch crosstool-NG/local-patches/gcc/4.8.5/
 	$(MAKE) -C crosstool-NG -f ../Makefile _toolchain
 
