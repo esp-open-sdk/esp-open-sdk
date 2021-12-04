@@ -23,7 +23,8 @@ void some_timerfunc(void *arg)
   }
 }
 
-extern "C" void ICACHE_FLASH_ATTR user_pre_init(){
+void ICACHE_FLASH_ATTR user_pre_init()
+{
 	// TODO: register partition table with system_partition_table_regist()
 }
 
