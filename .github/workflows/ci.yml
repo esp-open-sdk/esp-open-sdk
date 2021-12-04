@@ -4,8 +4,8 @@ env:
   DOCKER_USERNAME: igagis
   # github container registry
   DOCKER_REGISTRY: ghcr.io
-  IMAGE_NAME: esp-open-sdk
   IMAGE_OWNER: esp-open-sdk/esp-open-sdk
+  IMAGE_NAME: esp-open-sdk
   # image version is to be updated manually when new image is to be published
   IMAGE_VERSION: 0
 jobs:
