@@ -8,9 +8,9 @@
 static const int pin = 2;
 static volatile os_timer_t some_timer;
 
-void some_timerfunc(void *arg)
+void ICACHE_FLASH_ATTR some_timerfunc(void *arg)
 {
-  //Do blinky stuff
+  // Do blinky stuff
   if (GPIO_REG_READ(GPIO_OUT_ADDRESS) & (1 << pin))
   {
     // set gpio low
