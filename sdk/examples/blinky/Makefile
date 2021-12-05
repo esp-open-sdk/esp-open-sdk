@@ -1,7 +1,10 @@
 CC = xtensa-lx106-elf-gcc
+
+esp8266_sdk_dir := $(abspath $(dir $(word 2,$(shell whereis $(CC))))../../sdk/)/
+
 CFLAGS = -I. -mlongcalls
 LDLIBS = -nostdlib -Wl,--start-group -lmain -lnet80211 -lwpa -llwip -lpp -lphy -lc -lcirom -Wl,--end-group -lgcc
-LDFLAGS = -Teagle.app.v6.new.2048.ld
+LDFLAGS = -L$(esp8266_sdk_dir)/ld -Teagle.app.v6.new.2048.ld
 
 blinky-0x00000.bin: blinky
 	esptool.py elf2image $^
