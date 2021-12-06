@@ -2,7 +2,7 @@ CC = xtensa-lx106-elf-gcc
 
 esp8266_sdk_dir := $(abspath $(dir $(word 2,$(shell whereis $(CC))))../../sdk/)/
 
-CFLAGS = -I. -mlongcalls
+CFLAGS = -I. -DICACHE_FLASH -mlongcalls
 LDLIBS = -nostdlib -Wl,--start-group -lmain -lnet80211 -lwpa -llwip -lpp -lphy -lc -lcirom -Wl,--end-group -lgcc
 LDFLAGS = -L$(esp8266_sdk_dir)/ld -Teagle.app.v6.new.2048.ld
 
