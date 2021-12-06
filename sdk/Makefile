@@ -252,7 +252,7 @@ sdk_patch: $(VENDOR_SDK_DIR)/.dir .sdk_patch_$(VENDOR_SDK)
 	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_3.patch
 	cd $(VENDOR_SDK_DIR)/lib; mkdir -p tmp; cd tmp; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar x ../libcrypto.a; cd ..; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar rs libwpa.a tmp/*.o
 	$(TOOLCHAIN)/bin/xtensa-lx106-elf-ar r $(VENDOR_SDK_DIR)/lib/libmain.a user_rf_cal_sector_set.o
-	cp $(VENDOR_SDK_DIR)/lib/libgcc.a $(TOOLCHAIN)/bin/lib/gcc/xtensa-lx106-elf/4.8.5/
+	cp $(VENDOR_SDK_DIR)/lib/libgcc.a $(TOOLCHAIN)/lib/gcc/xtensa-lx106-elf/4.8.5/
 	@touch $@
 
 .sdk_patch_3.0.4: user_rf_cal_sector_set.o
