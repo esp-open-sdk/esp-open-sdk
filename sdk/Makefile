@@ -9,7 +9,7 @@ TOOLCHAIN = $(TOP)/xtensa-lx106-elf
 
 # Vendor SDK version to install, see VENDOR_SDK_ZIP_* vars below
 # for supported versions.
-VENDOR_SDK = 3.0.1
+VENDOR_SDK = 3.0.2
 
 .PHONY: crosstool-NG toolchain libhal libcirom sdk
 
@@ -257,23 +257,26 @@ sdk_patch: $(VENDOR_SDK_DIR)/.dir .sdk_patch_$(VENDOR_SDK)
 
 .sdk_patch_3.0.4: user_rf_cal_sector_set.o
 	echo -e "#undef ESP_SDK_VERSION\n#define ESP_SDK_VERSION 030004" >>$(VENDOR_SDK_DIR)/include/esp_sdk_ver.h
-	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_2.patch
+	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_3_0_1.patch
 	cd $(VENDOR_SDK_DIR)/lib; mkdir -p tmp; cd tmp; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar x ../libcrypto.a; cd ..; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar rs libwpa.a tmp/*.o
 	$(TOOLCHAIN)/bin/xtensa-lx106-elf-ar r $(VENDOR_SDK_DIR)/lib/libmain.a user_rf_cal_sector_set.o
+	cp $(VENDOR_SDK_DIR)/lib/libgcc.a $(TOOLCHAIN)/lib/gcc/xtensa-lx106-elf/4.8.5/
 	@touch $@
 
 .sdk_patch_3.0.3: user_rf_cal_sector_set.o
 	echo -e "#undef ESP_SDK_VERSION\n#define ESP_SDK_VERSION 030003" >>$(VENDOR_SDK_DIR)/include/esp_sdk_ver.h
-	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_2.patch
+	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_3_0_1.patch
 	cd $(VENDOR_SDK_DIR)/lib; mkdir -p tmp; cd tmp; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar x ../libcrypto.a; cd ..; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar rs libwpa.a tmp/*.o
 	$(TOOLCHAIN)/bin/xtensa-lx106-elf-ar r $(VENDOR_SDK_DIR)/lib/libmain.a user_rf_cal_sector_set.o
+	cp $(VENDOR_SDK_DIR)/lib/libgcc.a $(TOOLCHAIN)/lib/gcc/xtensa-lx106-elf/4.8.5/
 	@touch $@
 
 .sdk_patch_3.0.2: user_rf_cal_sector_set.o
 	echo -e "#undef ESP_SDK_VERSION\n#define ESP_SDK_VERSION 030002" >>$(VENDOR_SDK_DIR)/include/esp_sdk_ver.h
-	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_2.patch
+	$(PATCH) -d $(VENDOR_SDK_DIR) -p1 < c_types-c99_sdk_3_0_1.patch
 	cd $(VENDOR_SDK_DIR)/lib; mkdir -p tmp; cd tmp; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar x ../libcrypto.a; cd ..; $(TOOLCHAIN)/bin/xtensa-lx106-elf-ar rs libwpa.a tmp/*.o
 	$(TOOLCHAIN)/bin/xtensa-lx106-elf-ar r $(VENDOR_SDK_DIR)/lib/libmain.a user_rf_cal_sector_set.o
+	cp $(VENDOR_SDK_DIR)/lib/libgcc.a $(TOOLCHAIN)/lib/gcc/xtensa-lx106-elf/4.8.5/
 	@touch $@
 
 .sdk_patch_3.0.1: user_rf_cal_sector_set.o
