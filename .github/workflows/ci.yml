@@ -7,7 +7,7 @@ env:
   IMAGE_OWNER: esp-open-sdk/esp-open-sdk
   IMAGE_NAME: esp-open-sdk
   # image version is to be updated manually when new image is to be published
-  IMAGE_VERSION: 8
+  IMAGE_TAG: 9_sdk_3.0.0
 jobs:
   build_docker_image:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
           submodules: true
       - name: set environmental variables
         run: |
-          echo "DOCKER_IMAGE_NAME=$DOCKER_REGISTRY/$IMAGE_OWNER/$IMAGE_NAME:$IMAGE_VERSION" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_NAME=$DOCKER_REGISTRY/$IMAGE_OWNER/$IMAGE_NAME:$IMAGE_TAG" >> $GITHUB_ENV
           echo "DOCKER_IMAGE_LATEST_NAME=$DOCKER_REGISTRY/$IMAGE_OWNER/$IMAGE_NAME:latest" >> $GITHUB_ENV
       - name: build docker image
         run: sudo docker build -t $DOCKER_IMAGE_NAME .
